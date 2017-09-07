@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import SCBSwitchList from './components/SCBSwitchList';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
+import './App.css';
+
 
 const SwitchDataOption = {
   switchType: 'optionList',

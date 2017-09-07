@@ -1,7 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Switch from './Switch';
 import EditJSON from './EditJSON';
-
 
 class SCBSwitchList extends Component {
   constructor(props) {
@@ -24,11 +23,10 @@ class SCBSwitchList extends Component {
       }
       return option;
     });
-    this.setState({options: updatedOptions});
+    this.setState({ options: updatedOptions });
   }
 
   handleChange(event) {
-
     let parsedObj;
     try {
       parsedObj = JSON.parse(event.target.value);
@@ -41,17 +39,15 @@ class SCBSwitchList extends Component {
   }
 
   render() {
-    const lock = this.state.locked
-      ? <span className="glyphicon glyphicon-lock"></span>
-      : null;
+    const lock = this.state.locked ? <span className="glyphicon glyphicon-lock" /> : null;
     const visible = this.state.visible
       ? null
       : {
-        visibility: 'hidden'
-      }
+          visibility: 'hidden'
+        };
     const buttonGroupMargin = {
       marginTop: '60px'
-    }
+    };
     return (
       <div className="row">
         <h2>{this.props.children}</h2>
@@ -59,18 +55,29 @@ class SCBSwitchList extends Component {
         <div className="col-xs-8 col-sm-8 col-md-8">
           <div className="form-group ">
             <label>JSON used:</label>
-            <textarea className="form-control" rows="30" value={JSON.stringify(this.state, null, 2)} onChange={this.handleChange}/>
+            <textarea
+              className="form-control"
+              rows="30"
+              value={JSON.stringify(this.state, null, 2)}
+              onChange={this.handleChange}
+            />
           </div>
-        </div >
+        </div>
         <div className="col-sm-4 col-xs-4 col-md-4">
-          <div className="btn-group" style={visible,
-          buttonGroupMargin}>
-            {this.state.options.map(option => (<Switch key={option.id} className="btn btn-primary" handleClick={this.handleClick} {...option} locked={this.state.locked} switchType={this.state.switchType}/>))}
+          <div className="btn-group" style={(visible, buttonGroupMargin)}>
+            {this.state.options.map(option => (
+              <Switch
+                key={option.id}
+                className="btn btn-primary"
+                handleClick={this.handleClick}
+                {...option}
+                locked={this.state.locked}
+                switchType={this.state.switchType}
+              />
+            ))}
             {lock}
           </div>
-
         </div>
-
       </div>
     );
   }
